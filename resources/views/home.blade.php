@@ -25,10 +25,10 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!--responsive css-->
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
-
+    @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body id="app">
     <!--Start Preloader-->
     <div class="preloader">
         <div class="d-table">
@@ -58,7 +58,9 @@
                                 <a class="nav-link active" href="#" data-scroll-nav="0">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-scroll-nav="1">Features</a>
+                                <a class="nav-link" href="/cart" data-scroll-nav="1">Basket
+                                <badge-icon></badge-icon>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-scroll-nav="2">About</a>
@@ -309,86 +311,21 @@
                 </div>
             </div>
             <div class="row">
-                <!--start product single-->
+                @foreach($products as $product)
                 <div class="col-md-6">
                     <div class="product-single row">
                         <div class="product-img text-center col-lg-6">
-                            <img src="images/watch-3.png" class="img-fluid" alt="Image">
+                            <img src="images/{{ $product->image_name }}" class="img-fluid" alt="Image">
                         </div>
                         <div class="product-cont col-lg-6">
-                            <h4>Luxurious Watch</h4>
-                            <ul>
-                                <li><i class="icofont-check"></i> Crown Protector</li>
-                                <li><i class="icofont-check"></i> Water Resistance</li>
-                                <li><i class="icofont-check"></i> Movement Button</li>
-                                <li><i class="icofont-check"></i> 1 Year Guarantee</li>
-                            </ul>
-                            <h3>$120 <del><sup>$250</sup></del></h3>
-                            <a href><i class="icon-shopping-cart2"></i> Order Now</a>
+                            <h4>{{ $product->name }}</h4>
+                            {!! $product->description !!}
+                            <h3>${{ $product->price }} <del><sup>${{ $product->sale_price }}</sup></del></h3>
+                            <add-to-cart-button :product="{{ $product }}"/>
                         </div>
                     </div>
                 </div>
-                <!--end product single-->
-                <!--start product single-->
-                <div class="col-md-6">
-                    <div class="product-single row">
-                        <div class="product-img text-center col-lg-6">
-                            <img src="images/watch-2.png" class="img-fluid" alt="Image">
-                        </div>
-                        <div class="product-cont col-lg-6">
-                            <h4>Pink Torex Watch</h4>
-                            <ul>
-                                <li><i class="icofont-check"></i> Stainless Steel</li>
-                                <li><i class="icofont-check"></i> High Quality Glass</li>
-                                <li><i class="icofont-check"></i> 3 Step Protection</li>
-                                <li><i class="icofont-check"></i> 2 Year Guarantee</li>
-                            </ul>
-                            <h3>$250 <del><sup>$390</sup></del></h3>
-                            <a href><i class="icon-shopping-cart2"></i> Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!--end product single-->
-                <!--start product single-->
-                <div class="col-md-6">
-                    <div class="product-single row">
-                        <div class="product-img text-center col-lg-6">
-                            <img src="images/watch-1.png" class="img-fluid" alt="Image">
-                        </div>
-                        <div class="product-cont col-lg-6">
-                            <h4>New Yellow Watch</h4>
-                            <ul>
-                                <li><i class="icofont-check"></i> 2 Step Protection Glass</li>
-                                <li><i class="icofont-check"></i> PVD Coating</li>
-                                <li><i class="icofont-check"></i> Clear Super Glass</li>
-                                <li><i class="icofont-check"></i> 3 Year Guarantee</li>
-                            </ul>
-                            <h3>$330 <del><sup>$550</sup></del></h3>
-                            <a href><i class="icon-shopping-cart2"></i> Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!--end product single-->
-                <!--start product single-->
-                <div class="col-md-6">
-                    <div class="product-single row">
-                        <div class="product-img text-center col-lg-6">
-                            <img src="images/watch-4.png" class="img-fluid" alt="Image">
-                        </div>
-                        <div class="product-cont col-lg-6">
-                            <h4>Brand New Black</h4>
-                            <ul>
-                                <li><i class="icofont-check"></i> Lifetime Battery</li>
-                                <li><i class="icofont-check"></i> Awesome Color</li>
-                                <li><i class="icofont-check"></i> Water Resistance</li>
-                                <li><i class="icofont-check"></i> 1 Year Guarantee</li>
-                            </ul>
-                            <h3>$180 <del><sup>$390</sup></del></h3>
-                            <a href><i class="icon-shopping-cart2"></i> Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!--end product single-->
+                @endforeach
             </div>
             <div class="more-prod-btn text-center">
                 <a href>More Product</a>
