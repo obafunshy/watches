@@ -13,6 +13,11 @@ class CartController extends Controller
         $this->middleware('auth');
     }
 
+    public function index() {
+        $baskets = Basket::where('user_id', auth()->id())->with('product')->get();
+        return view('cart', compact('baskets'));
+    }
+
     public function store(Request $request) {
         $userId = auth()->id();
         $product_id = $request->product_id;
@@ -34,8 +39,7 @@ class CartController extends Controller
             $basket->save();
         }
 
-        $basket_count = Basket::where('product_id', $product_id)->where('user_id', $userId)->count();
-
+        $basket_count = Basket::where('user_id', $userId)->sum('qty');
         return response()->json([
             'basket_count' => $basket_count,
         ], 201);

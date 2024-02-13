@@ -12,10 +12,10 @@ class Basket extends Model
     protected $guarded = [];
 
     public function user() {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function product() {
-        $this->hasOne(Product::class, 'id', 'product_id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 }

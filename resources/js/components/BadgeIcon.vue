@@ -11,7 +11,7 @@ export default {
         }
     },
     mounted() {
-        this.$root.$on('changeBasketCount', (newBasketCount) => {
+        this.emitter.on('changeBasketCount', (newBasketCount) => {
             this.basketCount = newBasketCount
         })
     }

@@ -15,7 +15,7 @@ export default {
         async addToCart() {
             // console.log('product_id', this.product.id)
             let response = await axios.post('/cart', { 'product_id': this.product.id })
-            this.$root.$emit('changeBasketCount', response.data.basket_count)
+            this.emitter.emit('changeBasketCount', response.data.basket_count)
             console.log(response.data)
         }
     }
